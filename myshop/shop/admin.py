@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import Category, Product
 
+
+"""
+Add models to the admin site to manage categories and products (add, delete, edit).
+"""
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
