@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cart.apps.CartConfig',
     'shop.apps.ShopConfig',
 ]
 
@@ -68,8 +69,8 @@ TEMPLATES = [
     },
 ]
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/' # base URL that serves media files uploaded by users
+MEDIA_ROOT = BASE_DIR / 'media' # local path where the media files are stored, build dynamically prepending BASE_DIR
 
 WSGI_APPLICATION = 'myshop.wsgi.application'
 
@@ -125,3 +126,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CART_SESSION_ID = 'cart' # the key for storing the cart in the user session. Used for all sessions 
