@@ -24,11 +24,7 @@ a.button, input[type="submit"] {
     background:#5993bb;
     border-radius:4px;
     padding:10px 20px;
-    font-size:14px;
-    border:0;
-}
-
-a.button.light {
+    margin-top: 8px;
     color:#666;
     background:#ededed;
 }
