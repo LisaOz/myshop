@@ -11,8 +11,17 @@
             <a href="/" class="logo">My shop</a>
         </div>
         <div id="subheader">
-            <div class="body">
-                Your basket is empty
+            <div class="cart">
+                {% with total_items=cart|length %}
+                {% if total_items > 0 %}
+                    Your basket:
+                    <a href="{% url 'cart:cart_detail' %}">
+                        {{ total_items }} item{{ total_items|pluralize }}, £{{ cart.get_total_price }}
+                    </a>
+                {% else %}
+                    Your basket is empty
+                    {% endif %}
+                {% endwith %}
             </div>
         </div>
         <div id="content">
