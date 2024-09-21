@@ -77,5 +77,5 @@ class Cart:
     Method to clear the cart session
     """
     def clear(self):
-        del self.session[settings.CAER_SESSION_ID] # remove cart from session
+        del self.session[settings.CART_SESSION_ID] # remove cart from session
         self.save()
