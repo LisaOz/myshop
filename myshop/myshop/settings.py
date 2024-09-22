@@ -130,3 +130,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart' # the key for storing the cart in the user session. Used for all sessions 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # setting for sending emails into console while development

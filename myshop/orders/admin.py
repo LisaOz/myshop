@@ -3,6 +3,10 @@ from .models import Order, OrderItem
 
 # Register your models here.
 
+"""
+This is OrderItem model to manage orders from the admin site.
+ModelInline class is included as an inline in the OrderAdmin class, it allows to include a model on the same edit page as its related model.
+"""
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_fields = ['product']
