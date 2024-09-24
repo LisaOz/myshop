@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('payment/', include('payment.urls', namespace='payment')), # place it before 'shop' to avoid unintended pattern match with the paths defined in shop app
     path('', include('shop.urls', namespace='shop')), # include URLs for the shop application
 ]
 
