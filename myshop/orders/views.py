@@ -5,8 +5,6 @@ from .models import OrderItem
 from .tasks import order_created
 
 
-# Create your views here.
-
 """
 Order_create view
 """
@@ -23,17 +21,17 @@ def order_create(request):
                     price=item['price'],
                     quantity=item['quantity']
                 )
-            
-            # To clear the cart
-            cart.clear()
+
+            # Clear the cart
+            cart.clear() 
 
             # Launch asynchronous task
-            order_created.delay(order.id)  # call the delay() method of the task to execute it asynchronously. The task will be added to the message queue
+            order_created.delay(order.id)  # call the delay() method of the tasks to execute it asynchronously. The task will be added to the message queue
 
-            # Set the order in the session
+            # The order ID is stored in the user session
             request.session['order_id'] = order.id
             
-            # Redirect the payment
+            # the user is redirected to the payment process URL
             return redirect('payment:process')
     else:
         form = OrderCreateForm()

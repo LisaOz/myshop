@@ -141,4 +141,7 @@ STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 STRIPE_API_VERSION = '2024-04-10' # used stripe api version
 
-broker_connection_retry_on_startup = True
+#broker_connection_retry_on_startup = True
+
+CELERY_BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672//'
+CELERY_RESULT_BACKEND = 'rpc://'
