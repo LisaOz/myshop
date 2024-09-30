@@ -25,7 +25,6 @@ def stripe_webhook(request):
         return HttpResponse(status=404) # If invald signature
 
 
-
     """
     Method to check whether the event received is checkput.session.completed. 
     This event indicates that the checkput session has been completed successfully.
@@ -43,7 +42,8 @@ def stripe_webhook(request):
                 return HttpResponse(status=404)
             
             order.paid = True # Mark order as paid
+            order.stripe_id = session.payment_intent # store payment intent ID in the stripe_id field of the Order
             order.save() # save the order in the database
-            
+    
 
     return HttpResponse(status=200) # all is OK

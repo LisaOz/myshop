@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -14,6 +15,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
+    stripe_id = models.CharField(max_length=250, blank=True) # # reference payment by its ID to link each order with the related Stripe transaction
 
 
     class Meta:
@@ -29,6 +31,20 @@ class Order(models.Model):
     """
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
+    
+    """
+    Method to return the Stripe dashboard's URL for the payments associated with the order.
+    If no payment ID is stored in the stripe_id field of the Order, an empty string is returned.
+    """
+    def get_stripe_url(self):
+        if not self.stripe_id:
+            # if no payment
+            return ''
+        if '_test_' in settings.STRIPE_SECRET_KEY:
+            path = '/test/' # stripe path for test payments
+        else:
+            path = '/' # stripe path for real payments
+        return f'http:dashboard.stripe.com{path}payments/{self.stripe_id}'
 
 
 """
@@ -64,3 +80,7 @@ class OrderItem(models.Model):
     """
     def get_cost(self):
         return self.price * self.quantity
+
+    
+
+    
